@@ -8,7 +8,3 @@ cmake .. -GNinja
 ninja
 
 
-export TVM_HOME=/root/AlbertResearches/researches/tvm
-export PYTHONPATH=$TVM_HOME/python:${PYTHONPATH}
-
-

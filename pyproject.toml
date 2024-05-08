@@ -49,3 +49,15 @@ exclude = '''
   )/
 )
 '''
+
+[tool.poetry]                                              
+name = "tvm"                                           
+version = "0.1.0"                                          
+description = "auto-operator-fusion with multiple vendors" 
+authors = ["Albert.Shi <codefisheng@gmail.com>"]           
+license = "mit"                                            
+readme = "README.md"                                       
+
+
+[[tool.poetry.packages]]
+include = "python/tvm"
