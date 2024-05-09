@@ -48,6 +48,17 @@
 # - /path/to/cuda: use specific path to cuda toolkit
 set(USE_CUDA ON)
 
+# Whether to enable NCCL support:
+# - ON: enable NCCL with cmake's auto search
+# - OFF: disable NCCL
+# - /path/to/nccl: use specific path to nccl
+set(USE_NCCL OFF)
+
+# Whether to enable NVTX support (must have USE_CUDA enabled):
+# - ON: enable NCCL with cmake's auto search
+# - OFF: disable NCCL
+set(USE_NVTX OFF)
+
 # Whether enable ROCM runtime
 #
 # Possible values:
@@ -55,6 +66,12 @@ set(USE_CUDA ON)
 # - OFF: disable ROCM
 # - /path/to/rocm: use specific path to rocm
 set(USE_ROCM OFF)
+
+# Whether to enable RCCL support:
+# - ON: enable RCCL with cmake's auto search
+# - OFF: disable RCCL
+# - /path/to/rccl: use specific path to rccl
+set(USE_RCCL OFF)
 
 # Whether enable SDAccel runtime
 set(USE_SDACCEL OFF)
@@ -143,7 +160,10 @@ set(USE_MICRO_STANDALONE_RUNTIME OFF)
 #        which is needed for most cases
 # - /path/to/llvm-config: enable specific LLVM when multiple llvm-dev is available.
 set(USE_LLVM "/root/AlbertResearches/third_party_build/mlir_release_16.0.0_install/bin/llvm-config")
-# set(USE_LLVM "/root/AlbertResearches/third_party_build/mlir_release_16.0.0_install/bin/llvm-config --link-static")
+
+# Whether use MLIR to help analyze, requires USE_LLVM is enabled
+# Possible values: ON/OFF
+set(USE_MLIR ON)
 
 #---------------------------------------------
 # Contrib libraries
@@ -158,7 +178,7 @@ set(USE_LLVM "/root/AlbertResearches/third_party_build/mlir_release_16.0.0_insta
 set(USE_BYODT_POSIT OFF)
 
 # Whether use BLAS, choices: openblas, atlas, apple
-set(USE_BLAS "openblas")
+set(USE_BLAS openblas)
 
 # Whether to use MKL
 # Possible values:
@@ -274,13 +294,16 @@ set(USE_CMSISNN OFF)
 # USE_TENSORRT_RUNTIME - Support for running TensorRT compiled modules, requires presense of
 #                        TensorRT library. OFF/ON/"path/to/TensorRT"
 set(USE_TENSORRT_CODEGEN ON)
-set(USE_TENSORRT_RUNTIME /root/TensorRT-8.6.1.6)
+set(USE_TENSORRT_RUNTIME /root/TensorRT-8.6.1.6/)
 
 # Whether use VITIS-AI codegen
 set(USE_VITIS_AI OFF)
 
 # Build Verilator codegen and runtime
 set(USE_VERILATOR OFF)
+
+# Whether to use the Multi-System Compiler
+set(USE_MSC OFF)
 
 #Whether to use CLML codegen
 set(USE_CLML OFF)
@@ -295,7 +318,10 @@ set(USE_CLML_GRAPH_EXECUTOR OFF)
 set(USE_ANTLR OFF)
 
 # Whether use Relay debug mode
-set(USE_RELAY_DEBUG ON)
+set(USE_RELAY_DEBUG OFF)
+
+# Whether to enable debug code that may cause ABI changes
+set(TVM_DEBUG_WITH_ABI_CHANGE OFF)
 
 # Whether to build fast VTA simulator driver
 set(USE_VTA_FSIM OFF)
@@ -307,6 +333,10 @@ set(USE_VTA_TSIM OFF)
 set(USE_VTA_FPGA OFF)
 
 # Whether use Thrust
+# Possible values:
+# - ON: enable Thrust with cmake's auto search
+# - OFF: disable Thrust
+# - /path/to/cccl: use specific path to CCCL
 set(USE_THRUST OFF)
 
 # Whether use cuRAND
@@ -334,6 +364,9 @@ set(USE_HEXAGON_RPC OFF)
 # building runtime for Android.
 # Valid values are v65, v66, v68, v69, v73.
 set(USE_HEXAGON_ARCH "v68")
+
+# Whether use MRVL codegen
+set(USE_MRVL OFF)
 
 # Whether to use QHL library
 set(USE_HEXAGON_QHL OFF)
@@ -404,7 +437,7 @@ set(USE_GTEST ON)
 
 # Enable using CUTLASS as a BYOC backend
 # Need to have USE_CUDA=ON
-set(USE_CUTLASS ON)
+set(USE_CUTLASS OFF)
 
 # Enable to show a summary of TVM options
 set(SUMMARIZE OFF)
@@ -419,3 +452,9 @@ set(USE_UMA OFF)
 
 # Set custom Alloc Alignment for device allocated memory ndarray points to
 set(USE_KALLOC_ALIGNMENT 64)
+
+# Set Windows Visual Studio default Architecture (equivalent to -A x64)
+SET(CMAKE_VS_PLATFORM_NAME_DEFAULT "x64")
+
+# Set Windows Visual Studio default host (equivalent to -Thost=x64)
+SET(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE "x64")

@@ -1,6 +1,7 @@
 
 set -x CUDA_HOME /usr/local/cuda
 set -x TVM_HOME /root/AlbertResearches/researches/tvm
+set -x TVM_LIBRARY_PATH /root/AlbertResearches/researches/tvm/build
 
 set -x PATH $CUDA_HOME/bin $PATH
 set -x PATH /root/.local/bin $PATH
